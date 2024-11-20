@@ -1,116 +1,125 @@
-//https://tinyurl.com/dynamic-html-checker
-document.getElementById("html-checker").setAttribute("href","https://validator.w3.org/nu/?doc=" + location.href);
-		
-document.getElementById("css-checker").setAttribute("href","https://jigsaw.w3.org/css-validator/validator?uri=" + location.href);  
+/*
+    daily-grind.js
 
-myDate = new Date();
-myDay = myDate.getDay();
+        Name – Bubble tea for example 
+        Pic – an image of a bubble tea 
+        Day – for example, wednesday 
+        Alt – the data in the alt tag 
+        Color – a color to match the coffee 
+        Desc – a paragraph or two that describes the daily item 
+*/
+
+let myDate = new Date();
+let myDay = myDate.getDay();
+let today = "";
+let drink = "";
 
 switch(myDay) {
     case 0:
         today = "Sunday";
+
+        drink = {
+            name:"Espresso",
+            pic:"images/espresso.png",
+            alt:"Espresso: Fuel Your Day, One Bold Sip at a Time.",
+            color:"lightblue",
+            desc:'',
+            special:"Sunday's Espresso Escape:",
+        }
     break;
 
     case 1:
         today = "Monday";
+
+        drink = {
+            name:"Cold Brew",
+            pic:"images/cold-brew.jpg",
+            alt:"Chill Your Grind: Smooth Energy, Served Cold.",
+            color:"goldenrod",
+            desc:'',
+            special:"Monday's Cold Brew Kickstart:",
+        }
     break;
 
     case 2:
         today = "Tuesday";
+
+        drink = {
+            name:"Drip Coffee",
+            pic:"images/drip.jpg",
+            alt:"Drip too hard.",
+            color:"#9718ff",
+            desc:'',
+            special:"Tuesday's Classic Comfort:",
+        }
     break;
 
     case 3:
         today = "Wednesday";
+
+        drink = {
+            name:"Frappaccino",
+            pic:"images/frappaccino.jpg",
+            alt:"Cool Bliss in Every Frosty Swirl.",
+            color:"darkgreen",
+            desc:`The Frappuccino is a sweet, creamy blend of indulgence and refreshment. Combining coffee or crème base with milk, ice, and flavorful syrups, this blended beverage is then topped with a luscious swirl of whipped cream. Its thick, icy texture makes it a perfect treat for hot days or whenever you’re in the mood for something playful and satisfying.`,
+            special:"Wednesday's Midweek Treat:",
+        }
     break;
 
     case 4:
         today = "Thursday";
+
+        drink = {
+            name:"Caramel Latte",
+            pic:"images/caramel-latte.jpg",
+            alt:"Golden Comfort, Sweetly Yours.",
+            color:"orange",
+            desc:'',
+            special:"Thursday's Smooth & Sweet:",
+        }
     break;
 
     case 5:
         today = "Friday";
+
+        drink = {
+            name:"Mocha",
+            pic:"images/mocha.jpg",
+            alt:"where Chocolate Meets Coffee, Love at First Sip.",
+            color:"darkgrey",
+            desc:'',
+            special:"Friday's Mocha Mood:",
+        }
     break;
 
     case 6:
         today = "Saturday";
+
+        drink = {
+            name:"Bubble Tea",
+            pic:"images/bubble-tea.jpg",
+            alt:"Fun, Flavor, and a Pop of Joy!",
+            color:"palevioletred",
+            desc:'',
+            special:"Saturday's Weekend Bubbles:",
+        }
     break;
 
     default: //If the day is somehow something other than Sunday-Saturday, assign the day as an error in place of the day.
         today = "Error";
 }
 
-sundayColor = "lightblue";
-mondayColor = "goldenrod";
-tuesdayColor = "#9718ff";
-wednesdayColor = "darkgreen";
-thursdayColor = "orange";
-fridayColor = "darkgrey";
-saturdayColor = "lightpink";
+document.getElementById("coffee-cup").innerHTML = drinkTemplate(drink);
 
-if(today == "Sunday") {
-    document.getElementById("coffee").src = "images/espresso.png";
-    document.querySelector(".feature").style.color = sundayColor;
-    document.querySelector("html").style.backgroundColor = sundayColor;
-    document.getElementById("coffee").alt = "Espresso: Fuel Your Day, One Bold Sip at a Time."
-    document.getElementById("daily-special").innerHTML = "Sunday's Espresso Escape:";
-    document.getElementById("drink-of-day").innerHTML = "Espresso";
+function drinkTemplate(drink) {
+    let myReturn = `<p>
+    	<img src="${drink.pic}" alt="${drink.alt}" id="coffee"/>
+		<strong class="feature" id="daily-special">${drink.special}</strong> Today's daily coffee special is <strong class="feature" id="drink-of-day">${drink.name}</strong>, which is ${drink.alt}</p>`;
+    return myReturn;
 }
 
-else if(today == "Monday") {
-    document.getElementById("coffee").src = "images/cold-brew.jpg";
-    document.querySelector("html").style.backgroundColor = mondayColor;
-    document.querySelector(".feature").style.color = mondayColor;
-    document.getElementById("coffee").alt = "Chill Your Grind: Smooth Energy, Served Cold."
-    document.getElementById("daily-special").innerHTML = "Monday's Cold Brew Kickstart:";
-    document.getElementById("drink-of-day").innerHTML = "Espresso";
-}
-
-else if(today == "Tuesday") {
-    document.getElementById("coffee").src = "images/drip.jpg";
-    document.querySelector(".feature").style.color = tuesdayColor;
-    document.querySelector("html").style.backgroundColor = tuesdayColor;
-    document.getElementById("coffee").alt = "Pure. Simple. Perfectly Brewed."
-    document.getElementById("daily-special").innerHTML = "Tuesday's Classic Comfort:";
-    document.getElementById("drink-of-day").innerHTML = "Espresso";
-}
-
-else if(today == "Wednesday") {
-    document.getElementById("coffee").src = "images/frappaccino.jpg";
-    document.querySelector("html").style.backgroundColor = wednesdayColor;
-    document.querySelector(".feature").style.color = wednesdayColor;
-    document.getElementById("coffee").alt = "Cool Bliss in Every Frosty Swirl."
-    document.getElementById("daily-special").innerHTML = "Wednesday's Midweek Treat:";
-    document.getElementById("drink-of-day").innerHTML = "Frappaccino";
-}
-
-else if(today == "Thursday") {
-    document.getElementById("coffee").src = "images/caramel-latte.jpg";
-    document.querySelector(".feature").style.color = thursdayColor;
-    document.querySelector("html").style.backgroundColor = thursdayColor;
-    document.getElementById("coffee").alt = "Golden Comfort, Sweetly Yours."
-    document.getElementById("daily-special").innerHTML = "Thursday's Smooth & Sweet:";
-    document.getElementById("drink-of-day").innerHTML = "Caramel Latte";
-}
-
-else if(today == "Friday") {
-    document.getElementById("coffee").src = "images/mocha.jpg";
-    document.querySelector("html").style.backgroundColor = fridayColor;
-    document.querySelector(".feature").style.color = fridayColor;
-    document.getElementById("coffee").alt = "Chocolate Meets Coffee, Love at First Sip."
-    document.getElementById("daily-special").innerHTML = "Friday's Mocha Mood:";
-    document.getElementById("drink-of-day").innerHTML = "Mocha";
-}
-
-else if(today == "Saturday") {
-    document.getElementById("coffee").src = "images/bubble-tea.jpg";
-    document.querySelector("html").style.backgroundColor = saturdayColor;
-    document.querySelector(".feature").style.color = "palevioletred";
-    document.getElementById("coffee").alt = "Fun, Flavor, and a Pop of Joy!"
-    document.getElementById("daily-special").innerHTML = "Saturday's Weekend Bubbles:";
-    document.getElementById("drink-of-day").innerHTML = "Bubble Tea";
-}
-
-else {
+if(today == "Error") {
     document.querySelector("html").style.backgroundImage = "url('images/ethan.gif')";
     document.querySelector("html").style.backgroundSize = "20%";
 }
@@ -118,3 +127,8 @@ else {
 //Dynamic copyright year changer
 let d = new Date(); let thisYear = d.getFullYear();
 document.getElementById("this-year").innerHTML = thisYear;
+
+//https://tinyurl.com/dynamic-html-checker
+document.getElementById("html-checker").setAttribute("href","https://validator.w3.org/nu/?doc=" + location.href);
+		
+document.getElementById("css-checker").setAttribute("href","https://jigsaw.w3.org/css-validator/validator?uri=" + location.href);  
