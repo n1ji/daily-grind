@@ -39,7 +39,6 @@ switch(myDay) {
         today = "Error";
 }
 
-today = "Friday";
 sundayColor = "lightblue";
 mondayColor = "goldenrod";
 tuesdayColor = "#9718ff";
