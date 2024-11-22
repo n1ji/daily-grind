@@ -14,6 +14,19 @@ let myDay = myDate.getDay();
 let today = "";
 let drink = "";
 
+const queryString = location.search; //Finds the site url location
+const urlParams = new URLSearchParams(queryString); //Creates a URL paramater with the location from above
+
+//
+if(urlParams.has('day')) {
+    myDay = urlParams.get('day');
+    myDay = parseInt(myDay);
+}
+
+else { //If the url has nothing relating to the day, then set the page to the current day.
+    myDay = myDate.getDay();
+}
+
 switch(myDay) {
     case 0:
         today = "Sunday";
@@ -21,9 +34,9 @@ switch(myDay) {
         drink = {
             name:"Espresso",
             pic:"images/espresso.png",
-            alt:"Espresso: Fuel Your Day, One Bold Sip at a Time.",
-            color:"lightblue",
-            desc:'',
+            alt:"fuels your day, one bold sip at a time.",
+            color:"darkkhaki",
+            desc:'Espresso is the heart and soul of coffee, offering a bold, concentrated experience in every sip. Made by forcing hot water through finely-ground coffee under high pressure, this method extracts the rich, full-bodied flavor that coffee lovers adore. Its velvety crema, the golden layer on top, hints at the depth of flavor waiting beneath. Perfect on its own for a quick burst of energy or as the base for many beloved coffee drinks like lattes, cappuccinos, and mochas, espresso is versatile and timeless. With its robust aroma and intense taste, it’s the ultimate expression of coffee craftsmanship.',
             special:"Sunday's Espresso Escape:",
         }
     break;
@@ -35,8 +48,8 @@ switch(myDay) {
             name:"Cold Brew",
             pic:"images/cold-brew.jpg",
             alt:"Chill Your Grind: Smooth Energy, Served Cold.",
-            color:"goldenrod",
-            desc:'',
+            color:"salmon",
+            desc:'Cold brew coffee is a smooth, refreshing twist on your traditional coffee experience. Made by steeping coarsely ground coffee beans in cold water for 12 to 24 hours, this method extracts the natural sweetness and bold flavors without the bitterness of hot-brewed coffee. The result is a mellow, velvety brew with subtle chocolate and nutty undertones, perfect for savoring on a warm day.',
             special:"Monday's Cold Brew Kickstart:",
         }
     break;
@@ -47,9 +60,9 @@ switch(myDay) {
         drink = {
             name:"Drip Coffee",
             pic:"images/drip.jpg",
-            alt:"Drip too hard.",
-            color:"#9718ff",
-            desc:'',
+            alt:"pure, simple and perfectly brewed.",
+            color:"plum",
+            desc:'Drip coffee is the essence of a classic brew, offering a pure, unadulterated taste that celebrates the coffee bean’s natural flavor. Created by allowing hot water to pass through ground coffee in a filter, drip coffee is an everyday staple that blends tradition with convenience. It’s a warm, comforting drink that sets the tone for productivity and focus.',
             special:"Tuesday's Classic Comfort:",
         }
     break;
@@ -60,8 +73,8 @@ switch(myDay) {
         drink = {
             name:"Frappaccino",
             pic:"images/frappaccino.jpg",
-            alt:"Cool Bliss in Every Frosty Swirl.",
-            color:"darkgreen",
+            alt:"a cool bliss in every frosty swirl.",
+            color:"darkseagreen",
             desc:`The Frappuccino is a sweet, creamy blend of indulgence and refreshment. Combining coffee or crème base with milk, ice, and flavorful syrups, this blended beverage is then topped with a luscious swirl of whipped cream. Its thick, icy texture makes it a perfect treat for hot days or whenever you’re in the mood for something playful and satisfying.`,
             special:"Wednesday's Midweek Treat:",
         }
@@ -73,9 +86,9 @@ switch(myDay) {
         drink = {
             name:"Caramel Latte",
             pic:"images/caramel-latte.jpg",
-            alt:"Golden Comfort, Sweetly Yours.",
-            color:"orange",
-            desc:'',
+            alt:"golden comfort, sweetly yours.",
+            color:"sandybrown",
+            desc:'The caramel latte is a harmonious blend of smooth espresso, steamed milk, and rich caramel syrup. This delightful drink offers the perfect balance of creamy sweetness and robust coffee flavor, making it a favorite among those who enjoy a touch of indulgence with their caffeine.',
             special:"Thursday's Smooth & Sweet:",
         }
     break;
@@ -86,9 +99,9 @@ switch(myDay) {
         drink = {
             name:"Mocha",
             pic:"images/mocha.jpg",
-            alt:"where Chocolate Meets Coffee, Love at First Sip.",
-            color:"darkgrey",
-            desc:'',
+            alt:"where chocolate meets coffee, love at first sip.",
+            color:"lightseagreen",
+            desc:'A mocha is the ultimate union of coffee and chocolate, creating a decadent drink that’s both energizing and indulgent. This beverage starts with a rich espresso base, combined with steamed milk and velvety chocolate syrup. The result is a smooth, creamy concoction with just the right balance of sweetness and coffee kick.',
             special:"Friday's Mocha Mood:",
         }
     break;
@@ -99,9 +112,9 @@ switch(myDay) {
         drink = {
             name:"Bubble Tea",
             pic:"images/bubble-tea.jpg",
-            alt:"Fun, Flavor, and a Pop of Joy!",
+            alt:"fun, flavor, and a pop of joy!",
             color:"palevioletred",
-            desc:'',
+            desc:'Bubble tea, also known as boba tea, is a fun and flavorful drink that originated in Taiwan and has since become a global sensation. This tea-based beverage is infused with milk or fruit flavors and is served with chewy tapioca pearls or popping boba, creating a delightful textural contrast with every sip.',
             special:"Saturday's Weekend Bubbles:",
         }
     break;
@@ -111,12 +124,25 @@ switch(myDay) {
 }
 
 document.getElementById("coffee-cup").innerHTML = drinkTemplate(drink);
+document.getElementById("coffee-desk").innerHTML = drinkDesk(drink);
+document.querySelector("html").style.backgroundColor = `${drink.color}`
+
+//Change all feature classes to the drink color
+const NodeList = document.querySelectorAll(".feature");
+for (let i = 0; i < NodeList.length; i++) {
+  NodeList[i].style.color = `${drink.color}`;
+} 
 
 function drinkTemplate(drink) {
     let myReturn = `<p>
     	<img src="${drink.pic}" alt="${drink.alt}" id="coffee"/>
-		<strong class="feature" id="daily-special">${drink.special}</strong> Today's daily coffee special is <strong class="feature" id="drink-of-day">${drink.name}</strong>, which is ${drink.alt}</p>`;
+		<strong class="feature" id="daily-special">${drink.special}</strong> Today's daily coffee special is <strong class="feature">${drink.name}</strong>, which is ${drink.alt}</p>`;
     return myReturn;
+}
+
+function drinkDesk(drink) {
+    let myDesk = `<p><span class="feature" id="coffee-cup"><strong>${drink.name}: </strong></span>${drink.desc}</p>`;
+    return myDesk;
 }
 
 if(today == "Error") {

@@ -55,7 +55,7 @@ nav {
 
 nav ul {
 	list-style:none; /* removes the bullets */
-	background: #494949;
+	background: cornsilk;
 	padding: 0.6em;
 }
 
@@ -68,9 +68,9 @@ nav a:hover {
 }
 
 nav a {
-	color: #d3ffea;
+	color: saddlebrown;
 	text-decoration: none;
-	font-style: bold;
+	font-weight: bold;
 	font-size: 1.2em;
 }
 
