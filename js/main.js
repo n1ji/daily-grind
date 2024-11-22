@@ -17,7 +17,7 @@ let drink = "";
 const queryString = location.search; //Finds the site url location
 const urlParams = new URLSearchParams(queryString); //Creates a URL paramater with the location from above
 
-//
+//If the URL has day then add the current day to change the switch case.
 if(urlParams.has('day')) {
     myDay = urlParams.get('day');
     myDay = parseInt(myDay);
@@ -123,6 +123,7 @@ switch(myDay) {
         today = "Error";
 }
 
+//Change colors of text and background color of the site using functions.
 document.getElementById("coffee-cup").innerHTML = drinkTemplate(drink);
 document.getElementById("coffee-desk").innerHTML = drinkDesk(drink);
 document.querySelector("html").style.backgroundColor = `${drink.color}`
@@ -133,6 +134,7 @@ for (let i = 0; i < NodeList.length; i++) {
   NodeList[i].style.color = `${drink.color}`;
 } 
 
+//Function to change the first paragraph, swapping out certain items with json pairs.
 function drinkTemplate(drink) {
     let myReturn = `<p>
     	<img src="${drink.pic}" alt="${drink.alt}" id="coffee"/>
@@ -140,11 +142,13 @@ function drinkTemplate(drink) {
     return myReturn;
 }
 
+//Function to change the second paragraph
 function drinkDesk(drink) {
     let myDesk = `<p><span class="feature" id="coffee-cup"><strong>${drink.name}: </strong></span>${drink.desc}</p>`;
     return myDesk;
 }
 
+//If the day is somehow something other than Saturday through Sunday, then change the background to an error background.
 if(today == "Error") {
     document.querySelector("html").style.backgroundImage = "url('images/ethan.gif')";
     document.querySelector("html").style.backgroundSize = "20%";
