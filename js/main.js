@@ -126,7 +126,7 @@ switch(myDay) {
 //Change colors of text and background color of the site using functions.
 document.getElementById("coffee-cup").innerHTML = drinkTemplate(drink);
 document.getElementById("coffee-desk").innerHTML = drinkDesk(drink);
-document.querySelector("html").style.backgroundColor = `${drink.color}`
+document.querySelector("html").style.backgroundColor = `${drink.color}`;
 
 //Change all feature classes to the drink color
 const NodeList = document.querySelectorAll(".feature");

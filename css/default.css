@@ -74,6 +74,14 @@ nav a {
 	font-size: 1.2em;
 }
 
+.topnav a{
+	color: #000000;
+}
+
+.topnav{
+	background-color:#bb8084;
+}
+
 a {
 	color: #370075;
 	text-decoration: none;
